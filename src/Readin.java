@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -8,11 +10,14 @@ import java.util.Scanner;
 
 public class Readin {
     private String path;
+
     public Readin(){
-        path = getFileName();
+//        path = getFileName();
+        path = "GPS/files/formatted data/18_13_41.151135.csv";
+        getRawData();
     }
 
-    public String getFileName(){
+    private String getFileName(){
         Scanner scan = new Scanner(System.in);
         String possiblePath;
         do{
@@ -23,15 +28,38 @@ public class Readin {
 
         return possiblePath;
     }
+
     public boolean fileExists(){
+        File f = new File(path);
+        return f.exists();
+    }
+
+    private boolean fileExists(String path){
         System.out.println("Path is " + path);
         File f = new File(path);
         return f.exists();
     }
 
-    public boolean fileExists(String path){
-        System.out.println("Path is " + path);
-        File f = new File(path);
-        return f.exists();
+    private ArrayList<String> getRawData(){
+        assert fileExists() : "Error. File not found.";
+        ArrayList<String> data= new ArrayList<>();;
+        try {
+            Scanner scan = new Scanner(new File(path));
+            scan.useDelimiter("\n");
+            while(scan.hasNext()){
+                data.add(scan.next());
+
+            }
+            scan.close();
+
+
+
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error. File not found");
+        }
+
+        return data;
     }
 }
