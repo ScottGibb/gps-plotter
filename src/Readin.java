@@ -3,12 +3,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Created by Mark Falconer on 23/12/2018.
- */
 
 
-public class Readin {
+
+class Readin {
     private String path;
 
     public Readin(){
@@ -42,7 +40,7 @@ public class Readin {
 
     private ArrayList<String> getRawData(){
         assert fileExists() : "Error. File not found.";
-        ArrayList<String> data= new ArrayList<>();;
+        ArrayList<String> data= new ArrayList<>();
         try {
             Scanner scan = new Scanner(new File(path));
             scan.useDelimiter("\n");
