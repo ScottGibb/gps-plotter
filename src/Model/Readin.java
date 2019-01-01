@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import java.util.Scanner;
 
 
 
-class Readin {
+public class Readin {
     private String path;
 
     public Readin(){
@@ -21,13 +23,17 @@ class Readin {
         do{
             System.out.println("Please enter the file name");
             possiblePath = scan.next();
-            possiblePath = "GPS/files/formatted data/" + possiblePath + ".csv";
+            possiblePath = "GPS/files/formatted data/" + possiblePath + ".csv"; //add relevant folder/file type.
         }while(!fileExists(possiblePath));
 
         return possiblePath;
     }
 
-    public boolean fileExists(){
+    /**
+     * Helper method
+     * Check if the expected location of the file holding the data is true
+     */
+    private boolean fileExists(){
         File f = new File(path);
         return f.exists();
     }
