@@ -1,4 +1,3 @@
-import View.*;
 
 /**
  * Created by Mark Falconer on 23/12/2018.
@@ -6,7 +5,7 @@ import View.*;
 class Main {
 
     public static void main(String[] args) {
-        CreateWindow a = new CreateWindow();
+        GUI a = new GUI();
     }
 
 
