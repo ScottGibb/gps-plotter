@@ -42,6 +42,8 @@ public class GUI {
 
         newFileName.add(new JLabel(".csv"));
 
+        openFileName.setText("18_13_41.151135");
+
         mainPanel.add(newFileName);
 
         openFileButton = new JButton("Enter");

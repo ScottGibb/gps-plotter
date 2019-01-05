@@ -27,7 +27,7 @@ public class CreateListener implements ActionListener{
                 if(r.fileExists(path)){
                     r.setPath(path);
                     gui.closeCreateWindow();
-
+                    new MainGUI(r);
                 }else{
                     gui.invalidPath();
                 }
