@@ -130,13 +130,13 @@ public class MainGUI {
             picLabel.setIcon(new ImageIcon(myPicture));
 //            picLabel.repaint();
         }catch(Exception e){
-            picLabel.setText("File not found");
+//            picLabel.setText("File not found");
             picLabel.setPreferredSize(new Dimension(300,200));
             e.printStackTrace();
         }
     }
 
-    private void clearImage(){
+    public void clearImage(){
         try {
             BufferedImage img = ImageIO.read(new File("clearImage.jpg"));
             File out = new File("image.jpg");
