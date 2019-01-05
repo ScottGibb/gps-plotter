@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 public class Readin {
-    private String path;
+    private String file;
 
     public Readin(){
         //file name : 18_13_41.151135
@@ -17,7 +17,7 @@ public class Readin {
     }
 
     public void setPath(String path){
-        this.path = "GPS/files/formatted data/"+path+".csv";
+        this.file = path;
     }
 
     /**
@@ -30,10 +30,10 @@ public class Readin {
     }
 
     public ArrayList<String> getRawData(){
-        assert fileExists(path) : "Error. File not found.";
+        assert fileExists(file) : "Error. File not found.";
         ArrayList<String> data= new ArrayList<>();
         try {
-            Scanner scan = new Scanner(new File(path));
+            Scanner scan = new Scanner(new File("GPS/files/formatted data/"+file+".csv"));
             scan.useDelimiter("\n");
             while(scan.hasNext()){
                 data.add(scan.next());

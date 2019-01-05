@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Created by Mark Falconer on 05/01/2019.
@@ -26,7 +27,10 @@ public class MainGUI {
     private JFrame window;
 
     public MainGUI(Readin input){
+
+        clearImage();
         this.input = input;
+
         initWindow();
 
         Thread updater = new Thread(new Update(this,input));
@@ -52,7 +56,7 @@ public class MainGUI {
         mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         try{
-            BufferedImage myPicture = ImageIO.read(new File("image.png"));
+            BufferedImage myPicture = ImageIO.read(new File("image.jpg"));
             picLabel = new JLabel(new ImageIcon(myPicture));
 
         }catch(Exception e){
@@ -60,6 +64,7 @@ public class MainGUI {
             picLabel.setPreferredSize(new Dimension(300,200));
             e.printStackTrace();
         }
+        picLabel.setPreferredSize(new Dimension(300,200));
         mainPanel.add(picLabel);
 
         //Data area
@@ -121,14 +126,23 @@ public class MainGUI {
         lastUpdate.setText(lastUpdateString);
 
         try{
-            BufferedImage myPicture = ImageIO.read(new File("image1.png"));
+            BufferedImage myPicture = ImageIO.read(new File("image.jpg"));
             picLabel.setIcon(new ImageIcon(myPicture));
-
+//            picLabel.repaint();
         }catch(Exception e){
             picLabel.setText("File not found");
             picLabel.setPreferredSize(new Dimension(300,200));
             e.printStackTrace();
         }
+    }
+
+    private void clearImage(){
+        try {
+            BufferedImage img = ImageIO.read(new File("clearImage.jpg"));
+            File out = new File("image.jpg");
+            ImageIO.write(img,"jpg",out);
+        }catch(IOException e){
+            e.printStackTrace();}
     }
 
 }
