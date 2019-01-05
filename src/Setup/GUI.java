@@ -1,7 +1,10 @@
+package Setup;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI {
 
@@ -44,11 +47,16 @@ public class GUI {
         openFileButton = new JButton("Enter");
         mainPanel.add(openFileButton);
 
+
         createWindow.add(mainPanel);
         createWindow.setVisible(true);
         createWindow.setLocationRelativeTo(null);
         createWindow.setLocation(createWindow.getX(),createWindow.getY()-200);
         createWindow.pack();
+    }
+
+    public void closeCreateWindow(){
+        createWindow.dispose();
     }
 
     public String getNewFileName(){
@@ -60,5 +68,34 @@ public class GUI {
     private void addListeners(){
         openFileButton.setActionCommand("New File Name");
         openFileButton.addActionListener(createController);
+    }
+
+    public void invalidPath(){
+        tempWindow("Invalid path","Please enter a valid path");
+        openFileName.setText("18_13_41.151135");
+
+    }
+
+    private void tempWindow(String title, String message){
+        JFrame frame = new JFrame(title);
+        JPanel p = new JPanel(new GridLayout(2,1));
+
+        p.add(new JLabel(message));
+        JButton button = new JButton("Ok");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
+        p.add(button);
+
+        frame.add(p);
+        frame.setVisible(true);
+
+        frame.setLocationRelativeTo(null);
+        frame.setLocation(createWindow.getX(),createWindow.getY()-200);
+        frame.pack();
     }
 }

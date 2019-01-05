@@ -1,3 +1,5 @@
+package Main;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -9,24 +11,26 @@ import java.util.Scanner;
 public class Readin {
     private String path;
 
-    public Readin(String p){
-//        path = "GPS/files/formatted data/18_13_41.151135.csv";
-        path = p;
+    public Readin(){
+        //file name : 18_13_41.151135
 
     }
 
+    public void setPath(String path){
+        this.path = "GPS/files/formatted data/"+path+".csv";
+    }
 
     /**
      * Helper method
      * Check if the expected location of the file holding the data is true
      */
-    private boolean fileExists(){
-        File f = new File(path);
+    public boolean fileExists(String p){
+        File f = new File("GPS/files/formatted data/"+p+".csv");
         return f.exists();
     }
 
-    private ArrayList<String> getRawData(){
-        assert fileExists() : "Error. File not found.";
+    public ArrayList<String> getRawData(){
+        assert fileExists(path) : "Error. File not found.";
         ArrayList<String> data= new ArrayList<>();
         try {
             Scanner scan = new Scanner(new File(path));
